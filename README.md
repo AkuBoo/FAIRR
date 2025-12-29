@@ -34,53 +34,54 @@ $$\psi(h) = \sum^K_{k=1} a_k \exp\left(- \frac{(h-b_k)^2}{c_k^2} \right) \qquad 
 - `chains, iter, adapt_delta, max_treedepth` : see `stan()` documentation.
 - `timeout` Maximum time spent on **each** `stan` estimation (if `asym = TRUE` it doubles!). 
 ## Value
-A `list` :
-	`$fair` FAIR output
-		**If `asym = FALSE`**
-		`$params` parameters
-			`$mean` mean
-			`$low` 2.5 centile
-			`$high` 97.5 centile
-		`$psi` posterior distribution
-			`$mean` mean
-			`$low` 2.5 centile
-			`$high` 97.5 centile
-		**If `asym = TRUE`**
-		`$positive`
-			`$params` parameters
-				`$mean` mean
-				`$low` 2.5 centile
-				`$high` 97.5 centile
-			`$psi` posterior distribution
-				`$mean` mean
-				`$low` 2.5 centile
-				`$high` 97.5 centile
-		`$negative`
-			`$params` parameters
-				`$mean` mean
-				`$low` 2.5 centile
-				`$high` 97.5 centile
-			`$psi` posterior distribution
-				`$mean` mean
-				`$low` 2.5 centile
-				`$high` 97.5 centile
-	`$var` VAR estimated 
-		`$irf` Impulse-Response Function
-			`$mean` mean
-			`$low` 2.5 centile
-			`$high` 97.5 centile
-		`$shocks` Orthogonalized shocks
-			`$all` Matrix of all the shocks
-		`$priors` Priors extracted from the smoothed IRF
-			**If K=1**
-			`$a, $b, $c` with `$mean, $low, $high` 
-			**If K=2**
-			`$a1, $b1, $c1, $a2, $b2, $c2` with `$mean, $low, $high`
-	`$stan` The `stan::summary` output with default options, see their documentation.
-	`$data` Data used
-		`$Y`
-		`$Z`
-		`$X`
+A `list`:
+
+* `$fair` FAIR output
+  * **If `asym = FALSE`**
+    * `$params` parameters
+      * `$mean` mean
+      * `$low` 2.5 centile
+      * `$high` 97.5 centile
+    * `$psi` posterior distribution
+      * `$mean` mean
+      * `$low` 2.5 centile
+      * `$high` 97.5 centile
+  * **If `asym = TRUE`**
+    * `$positive`
+      * `$params` parameters
+        * `$mean` mean
+        * `$low` 2.5 centile
+        * `$high` 97.5 centile
+      * `$psi` posterior distribution
+        * `$mean` mean
+        * `$low` 2.5 centile
+        * `$high` 97.5 centile
+    * `$negative`
+      * `$params` parameters
+        * `$mean` mean
+        * `$low` 2.5 centile
+        * `$high` 97.5 centile
+      * `$psi` posterior distribution
+        * `$mean` mean
+        * `$low` 2.5 centile
+        * `$high` 97.5 centile
+* `$var` VAR estimated 
+  * `$irf` Impulse-Response Function
+    * `$mean` mean
+    * `$low` 2.5 centile
+    * `$high` 97.5 centile
+  * `$shocks` Orthogonalized shocks
+    * `$all` Matrix of all the shocks
+  * `$priors` Priors extracted from the smoothed IRF
+    * **If K=1**
+      * `$a, $b, $c` with `$mean, $low, $high` 
+    * **If K=2**
+      * `$a1, $b1, $c1, $a2, $b2, $c2` with `$mean, $low, $high`
+* `$stan` The `stan::summary` output with default options, see their documentation.
+* `$data` Data used
+  * `$Y`
+  * `$Z`
+  * `$X`
 ## Known issues
 If the noise to signal ratio is high, the output can and probably will be garbage. I've tried to compare VAR IRF's with FAIR on simulated processes and FAIR seemed consistently better than VAR in highly noisy settings but Stan threw a lot of warnings as the priors for the FAIR come from the VAR's IRF and in these settings the posterior distribution can be quite different from the prior distribution. Estimation can be extremely slow if the noise to signal ratio is high. 
 ## Files
