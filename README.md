@@ -74,9 +74,9 @@ A `list`:
     * `$all` Matrix of all the shocks
   * `$priors` Priors extracted from the smoothed IRF
     * **If K=1**
-      * `$a, $b, $c` with `$mean, $low, $high` 
+      * `$a, $b, $c` 
     * **If K=2**
-      * `$a1, $b1, $c1, $a2, $b2, $c2` with `$mean, $low, $high`
+      * `$a1, $b1, $c1, $a2, $b2, $c2`
 * `$stan` The `stan::summary` output with default options, see their documentation.
 * `$data` Data used
   * `$Y`
